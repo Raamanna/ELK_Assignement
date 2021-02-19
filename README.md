@@ -29,6 +29,9 @@ Step 5: Run logstash using below command
 Note: you may need to copy mssql-jdbc-7.4.1.jre8.jar file into /usr/share/logstash/logstash-core/lib/jars/ 
 
 
+Result:
+
+Check Image_1 snapshot for running conatiner, Image_2 snapshot for loded data into ES and Image_3 snapshot for sample dashboard
 
 
        
