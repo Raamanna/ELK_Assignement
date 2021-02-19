@@ -9,8 +9,12 @@ Step 1: pull following docker images from repository
          kibana: docker pull docker.elastic.co/kibana/kibana:7.10.1
          logstash: docker pull docker.elastic.co/logstash/logstash:7.10.1
 
-Step 2: login and create database then restore data from .bak file using below command
+Step 2: Run container, login and create database then restore data from .bak file using below command
         
+        docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=password" -p 1434:1434 --name tempDB -d mcr.microsoft.com/mssql/server:2019-latest
+        
+        sudo docker exec -it sql1 mkdir /var/opt/mssql/backup
+        sudo docker cp AdventureWorksLT2019.bak sql1:/var/opt/mssql/backup
         sudo docker exec -it sql1 /opt/mssql-tools/bin/sqlcmd -S localhost -U user_name -P 'password' -Q 'RESTORE FILELISTONLY FROM DISK = "/home/ram/Downloads/AdventureWorksLT2019.bak"'
 
 Step 3: Run Elasticsearch, Kibana docker container using below commands
